@@ -7,44 +7,78 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: #f4f5f7; font-family: system-ui, -apple-system, sans-serif; color: #1a1a2e; padding: 32px 24px; line-height: 1.5; }
   .container { max-width: 900px; margin: 0 auto; }
-  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #dc2626; }
+
+  /* HEADER */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; padding-bottom: 16px; border-bottom: 2px solid #dc2626; }
   .header-left h1 { font-size: 22px; font-weight: 700; color: #111; letter-spacing: -0.02em; }
   .header-left p { font-size: 13px; color: #666; margin-top: 4px; }
-  .badge-fail { background: #dc2626; color: #fff; font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 4px; letter-spacing: 0.05em; }
+  .badge-fail { background: #dc2626; color: #fff; font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 4px; letter-spacing: 0.05em; align-self: center; }
+
+  /* ACTION BUTTONS */
+  .action-bar { display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 24px; padding-top: 12px; }
+  .action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #d1d5db; background: #fff; color: #374151; text-decoration: none; transition: all 0.15s ease; }
+  .action-btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+  .action-btn.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .action-btn.primary:hover { background: #1d4ed8; }
+  .action-btn svg { flex-shrink: 0; }
+
+  /* TOOLTIP */
+  .btn-wrap { position: relative; display: inline-flex; }
+  .btn-wrap .tip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #111; color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 4px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s ease; }
+  .btn-wrap .tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 4px solid transparent; border-top-color: #111; }
+  .btn-wrap:hover .tip { opacity: 1; }
+
+  /* META BAR */
   .meta-bar { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
   .meta-item { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 18px; flex: 1; min-width: 130px; }
   .meta-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
   .meta-value { font-size: 18px; font-weight: 700; color: #111; font-family: 'SF Mono', 'Consolas', monospace; margin-top: 2px; }
   .meta-value.red { color: #dc2626; }
   .meta-value.green { color: #16a34a; }
+  .progress-bar-bg { width: 100%; height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; margin-top: 4px; }
+  .progress-bar-fill { height: 100%; border-radius: 5px; }
+
+  /* SECTIONS */
   .section-title { font-size: 15px; font-weight: 700; color: #111; margin: 24px 0 12px; padding-left: 12px; border-left: 3px solid #dc2626; }
   .section-title.warn { border-left-color: #f59e0b; }
+
+  /* TABLES */
   .fail-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; margin-bottom: 20px; }
   .fail-table th { text-align: left; font-size: 11px; color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 14px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
   .fail-table td { padding: 10px 14px; font-size: 13px; color: #222; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
   .fail-table tr:last-child td { border-bottom: none; }
   .fail-table tr:hover td { background: #fafafa; }
+
+  /* TAGS */
   .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; }
   .tag-rework { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
   .tag-replace { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
   .tag-asis { background: #fefce8; color: #a16207; border: 1px solid #fef08a; }
+
+  /* SUMMARY GRID */
   .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   .summary-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 18px; }
   .summary-card h3 { font-size: 13px; font-weight: 600; color: #444; margin-bottom: 8px; }
   .summary-card ul { list-style: none; padding: 0; }
   .summary-card li { font-size: 12px; color: #555; padding: 3px 0; padding-left: 14px; position: relative; }
   .summary-card li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; }
+
+  /* DOC ALERT */
   .doc-bar { display: flex; align-items: center; gap: 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; }
-  .doc-bar svg { flex-shrink: 0; }
   .doc-bar-text { font-size: 13px; color: #991b1b; }
   .doc-bar-text strong { font-weight: 700; }
-  .progress-bar-bg { width: 100%; height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; margin-top: 4px; }
-  .progress-bar-fill { height: 100%; border-radius: 5px; }
+
+  /* FOOTER */
   .footer { margin-top: 24px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 11px; color: #999; display: flex; justify-content: space-between; }
+
+  @media print {
+    .action-bar { display: none; }
+    body { background: #fff; padding: 16px; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="report-content">
 
   <div class="header">
     <div class="header-left">
@@ -54,6 +88,32 @@
     <span class="badge-fail">FAIL</span>
   </div>
 
+  <!-- ACTION BUTTONS -->
+  <div class="action-bar">
+    <div class="btn-wrap">
+      <span class="tip">Copy report to clipboard</span>
+      <button class="action-btn" id="copy-btn" onclick="copyToClipboard()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy to Clipboard
+      </button>
+    </div>
+    <div class="btn-wrap">
+      <span class="tip">Save as HTML file</span>
+      <button class="action-btn" id="export-btn" onclick="exportHTML()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export
+      </button>
+    </div>
+    <div class="btn-wrap">
+      <span class="tip">Share via email</span>
+      <a class="action-btn primary" href="mailto:?subject=QC%20Inspection%20Findings%20-%20FDK126411001&body=Please%20review%20the%20attached%20QC%20findings%20for%20Robot%20FDK126411001.%20Overall%20result%3A%20FAIL%20(16%20of%20119%20checks%20failed%2C%2086.6%25%20pass%20rate).%20Key%20issues%3A%2010%20documentation%20gaps%2C%204%20head%20assembly%20defects%2C%201%20torso%20cable%20pinch%2C%201%20cosmetic%20defect.">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Share
+      </a>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
   <div class="meta-bar">
     <div class="meta-item">
       <div class="meta-label">Total Checks</div>
@@ -76,7 +136,7 @@
 
   <!-- DOCUMENTATION ALERT -->
   <div class="doc-bar">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M12 3l9.66 16.59A1 1 0 0120.66 21H3.34a1 1 0 01-.86-1[MAC_ADDRESS]" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
     <div class="doc-bar-text"><strong>10 of 16 failures are documentation gaps.</strong> All 10 incoming traveler documents (I-01 → I-10) arrived incomplete — missing signatures, pass/fail results, serial numbers, and final decisions. This is a systemic supplier process issue.</div>
   </div>
 
@@ -88,43 +148,37 @@
     </thead>
     <tbody>
       <tr>
-        <td>H-01</td>
-        <td>Head Assembly</td>
+        <td>H-01</td><td>Head Assembly</td>
         <td>Head Frame Cosmetics — gap between Cap and Head</td>
         <td>Potential ingress path; customer annoyance</td>
         <td><span class="tag tag-rework">Rework</span></td>
       </tr>
       <tr>
-        <td>H-10</td>
-        <td>Head Assembly</td>
+        <td>H-10</td><td>Head Assembly</td>
         <td>Head Cap Clip broken, not trimmed properly</td>
         <td>Head Cap not seated / secured properly</td>
         <td><span class="tag tag-replace">Rework / Replace</span></td>
       </tr>
       <tr>
-        <td>H-23</td>
-        <td>Head Assembly</td>
+        <td>H-23</td><td>Head Assembly</td>
         <td>Sub Assembly Tag missing from Head Frame</td>
         <td>No traceability for sub-assembly</td>
         <td><span class="tag tag-asis">Use as Is</span></td>
       </tr>
       <tr>
-        <td>H-24</td>
-        <td>Head Assembly</td>
+        <td>H-24</td><td>Head Assembly</td>
         <td>Head Cap Attachment — gap between Cap and Head</td>
         <td>Potential ingress path; customer annoyance</td>
         <td><span class="tag tag-rework">Rework</span></td>
       </tr>
       <tr>
-        <td>T-09</td>
-        <td>Torso — Rear</td>
+        <td>T-09</td><td>Torso — Rear</td>
         <td>Vinyl tape on cables — ToF cable pinched into frame</td>
         <td>Unable to connect to backplane</td>
         <td><span class="tag tag-rework">Rework</span></td>
       </tr>
       <tr>
-        <td>A-25</td>
-        <td>Arm Assembly</td>
+        <td>A-25</td><td>Arm Assembly</td>
         <td>Torque marks visible on exterior (grippers / arm clamps)</td>
         <td>Cosmetic defect; customer annoyance</td>
         <td><span class="tag tag-rework">Rework</span></td>
@@ -136,7 +190,7 @@
   <div class="section-title warn">Recommended Supplier Actions</div>
   <div class="summary-grid">
     <div class="summary-card">
-      <h3>🔴 Immediate — Documentation</h3>
+      <h3>�� Immediate — Documentation</h3>
       <ul>
         <li>Implement mandatory sign-off gate: every traveler must have pass/fail, serial number, and inspector signature before shipment</li>
         <li>Add final decision field validation on all 10 sub-assembly traveler forms</li>
@@ -144,7 +198,7 @@
       </ul>
     </div>
     <div class="summary-card">
-      <h3>🟡 Immediate — Hardware</h3>
+      <h3>�� Immediate — Hardware</h3>
       <ul>
         <li>Root-cause Head Cap gap (H-01, H-24) — investigate clip design and assembly process</li>
         <li>Review Head Cap Clip trimming step (H-10) to prevent breakage</li>
@@ -153,7 +207,7 @@
       </ul>
     </div>
     <div class="summary-card">
-      <h3>🟠 Process Gaps Noted by Inspector</h3>
+      <h3>�� Process Gaps Noted by Inspector</h3>
       <ul>
         <li>No specification defined for eyebrow alignment position</li>
         <li>No specification for eyebrow move resistance</li>
@@ -164,7 +218,7 @@
       </ul>
     </div>
     <div class="summary-card">
-      <h3>🔧 Missing Gauges at Inspection</h3>
+      <h3>�� Missing Gauges at Inspection</h3>
       <ul>
         <li>Tape gauge needed for sheathing length (150mm) and zip tie position (20mm) checks</li>
         <li>Feeler gauge needed for shoulder and elbow clasp spacing checks</li>
@@ -194,4 +248,4 @@
 
 </div>
 </body>
-</ht
+</html>
